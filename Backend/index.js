@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 })
 
 
-cron.schedule('* * * * *', checkSubmissions);
+// cron.schedule('* * * * *', checkSubmissions);
 
 
 const PORT = process.env.PORT || 5000;

@@ -1,48 +1,65 @@
 import { Submission } from "../models/index.js";
-import { QuestionTypeEnum, SubmissionStatusEnum } from "../types/index.js";
+import { SubmissionStatusEnum } from "../types/index.js";
+import { awardMarks } from "./utils/index.js";
+import { checkSubmissionQuestions } from "../utils/index.js";
 
 export const checkSubmissions = async () => {
-    console.log('running a task every minute', Date.now());
 
-    const submissions = await Submission.find({
-        status: SubmissionStatusEnum.SUBMITTED
-    }).populate("assesmentId");
+    console.log("checkSubmissions:: CRON job started");
 
-    let marksAwarded = 0;
+    try {
+        const submissions = await Submission.find({
+            status: SubmissionStatusEnum.SUBMITTED,
+        }).populate("assesmentId");
 
+        console.log("checkSubmissions:: Submissions to check", submissions.length);
 
-    for (const submission of submissions) {
-        const { questions } = submission.assesmentId;
-        const { answers } = submission;
+        for (const submission of submissions) {
+            console.log("checkSubmissions:: Checking submission", submission._id);
+            const { questions } = submission.assesmentId;
+            const { answers } = submission;
 
-        for (const answer of answers) {
-            let { questionId, response } = answer;
+            const undeterminedQuestions = [];
 
-            const question = questions.find(q => q._id.toString() === questionId.toString());
+            for (const answer of answers) {
+                const { questionId, response } = answer;
+                const question = questions.find(q => q._id.toString() === questionId.toString());
 
-            if (!question) {
-                console.log('question not found');
-                continue;
+                if (!question) continue;
+
+                const { marksAwarded, undeterminedQuestions: questionsToBeCheckedByAI } = awardMarks(question, response);
+                answer.marksAwarded = marksAwarded; // this is for mcq's
+                undeterminedQuestions.push(...questionsToBeCheckedByAI);
             }
 
-            switch (question.type) {
-                case QuestionTypeEnum.MULTIPLE_CHOICE_QUESTION:
-                    const correctAnswer = (question.options ?? []).find(opt => opt.isCorrect);
+            if (undeterminedQuestions.length > 0) {
+                const submissionFeedbacks = await checkSubmissionQuestions(undeterminedQuestions);
 
-                    if (correctAnswer.label === response) {
-                        marksAwarded += question.marks;
-                    }
-                    break;
+                for (const feedback of submissionFeedbacks) {
+                    const { questionId, marksAwarded, feedback: submissionFeedback } = feedback;
 
-                case QuestionTypeEnum.LONG_ANSWER_QUESTION:
-                    break;
-                case QuestionTypeEnum.SHORT_ANSWER_QUESTION:
-                    break;
-                default:
-                    break;
+                    const answer = answers.find(a => a.questionId.toString() === questionId.toString());
+
+                    if (!answer) continue;
+
+                    answer.marksAwarded = marksAwarded; // this is for short and long answers
+                    answer.feedback = submissionFeedback;
+                }
             }
+
+            submission.status = SubmissionStatusEnum.COMPLETED;
+            submission.totalMarks = answers.reduce((total, answer) => total + answer.marksAwarded, 0);
+
+            await submission.save();
+
+            console.log("checkSubmissions:: submission completed: ", submission._id);
+            console.log("checkSubmissions:: max marks: ", submission.maxMarks);
+            console.log("checkSubmissions:: marks granted: ", submission.totalMarks);
         }
+    } catch (error) {
+        console.log("checkSubmissions:: CRON job failed", error);
+    } finally {
+        console.log("checkSubmissions:: CRON job completed");
     }
 
-    console.log('marksAwarded:', marksAwarded);
 }

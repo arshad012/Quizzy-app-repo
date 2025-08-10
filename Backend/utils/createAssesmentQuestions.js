@@ -29,10 +29,10 @@ export const createAssesmentQuestions = async (assesment) => {
         responseSchema: questionListResponseSchema
       }
     });
-  
+
     const questions = JSON.parse(response.text)
     return questions;
-    
+
   } catch (error) {
     throw new Error('Failed to generate questions from AI', {
       cause: error

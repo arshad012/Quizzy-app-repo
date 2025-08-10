@@ -48,7 +48,9 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
                                             className="cursor-pointer"
                                             onClick={() => action.onClick(row)}
                                             >
-                                            {action.icon}
+                                            {typeof action.icon === 'function'
+                                            ? action.icon(row) 
+                                            : action.icon}
                                         </div>
                                     ))}
                                 </td>
