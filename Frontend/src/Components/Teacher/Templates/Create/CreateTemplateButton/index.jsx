@@ -20,12 +20,12 @@ function CreateTemplateButton() {
             await triggerCreate(stateToTemplate(template)).unwrap();
             navigate('/teacher/templates');
         } catch (error) {
-            console.log('Tehre was an error while creating template, error:', error)
+            console.log('There was an error while creating template, error:', error)
         }
     }
 
     return (
-        <CustomButton disabled={isLoading} className="my-2" onClick={handleClick}>
+        <CustomButton disabled={isLoading} className="mt-2" onClick={handleClick}>
             <Save size={15} /> Save Template
         </CustomButton>
     )

@@ -1,4 +1,4 @@
-import { Save } from 'lucide-react'
+import { Save, Loader2 } from 'lucide-react'
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 
@@ -24,8 +24,12 @@ function CreateAssesmentButton() {
     }
 
     return (
-        <CustomButton disabled={isLoading} className="my-2 w-fit" onClick={handleClick}>
-            <Save size={15} /> Save Assesment
+        <CustomButton disabled={isLoading} className="my-2 w-fit disabled:opacity-50 disabled:cursor-wait" onClick={handleClick}>
+            {isLoading ? (
+                <Loader2 size={20} className='animate-spin' /> 
+            ) : ( 
+            <Save size={15} />
+            )} Save Assesment
         </CustomButton>
     )
 }

@@ -16,4 +16,12 @@ export const studentRoutes = [
         path: '/student/submissions',
         element: () => import('../Pages/student/submissions')
     },
+    {
+        path: '/student/submissions/:id',
+        element: () => import('../Pages/student/submissions/submission')
+    },
+    {
+        path: '/student/*',
+        element: () => import('../Pages/notFound')
+    }
 ]

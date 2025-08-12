@@ -10,7 +10,7 @@ function AssesmentQuestion() {
     const { questions, currentQuestionIndex } = useSelector(assesmentsSelector);    
 
     return (
-        <main className='flex flex-col justify-between flex-1 pr-2 pl-0 overflow-auto'>
+        <main className='items-start flex-1 h-full pr-2 pl-0 overflow-auto'>
             <div>
                 <div className="mb-5">
                     <ChipsComponent question={questions[currentQuestionIndex]} index={currentQuestionIndex} />
@@ -29,7 +29,7 @@ function AssesmentQuestion() {
                 />
             </div>
 
-            <div className="flex gap-5 items-center justify-end mb-5">
+            <div className="flex gap-5 items-center justify-end my-5">
                 <PreviousButton />                
                 <NextButton />
             </div>

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { SidebarTopElements } from "./Utils/SidebarTopElement"
 import SidebarElement from "./SidebarElement"
@@ -9,11 +9,11 @@ import SidebarButton from "./SidebarButton"
 import { commonSelector } from '../../../Store/feature/common/selectors';
 import { toggleSidebar } from '../../../Store/feature/common/commonSlice';
 
+import '../../../App.css';
 
 function StudentSidebar() {
     const { isSidebarOpen } = useSelector(commonSelector);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const collpaseSidebarHandler = () => {
         dispatch(
@@ -24,13 +24,17 @@ function StudentSidebar() {
     return (
         <div className='h-full w-full border-r flex flex-col'>
             
-            <div onClick={() => navigate("/")} className={`${isSidebarOpen ? "pl-2" : "p-0 justify-center"} h-16 w-full border-b flex items-center cursor-pointer`}>
-                <img
-                    src='../../../quizzy_logo/quizzy_logo.png'
-                    alt="Quizzy logo"
-                    className="max-h-full"
-                />
-                <div className={`text-3xl font-bold ${isSidebarOpen ? '' : 'hidden'}`}>Quizzy</div>
+            <div className={`custom-header ${isSidebarOpen ? "pl-4" : "p-0 justify-center"} w-full border-b flex items-center`}>
+                <Link to={'/'}>
+                    <img
+                        src='../../../quizzy_logo/quizzy_logo.png'
+                        alt="Quizzy logo"
+                        className="max-h-full w-10"
+                    />
+                </Link>
+                <Link to={'/'}>
+                    <div className={`text-3xl font-bold ${isSidebarOpen ? '' : 'hidden'} bg-red-`}>Quizzy</div>
+                </Link>
             </div>
 
             <div className="flex-col p-2 border-b">

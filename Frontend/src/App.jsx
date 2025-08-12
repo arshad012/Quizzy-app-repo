@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { teacherRoutes, studentRoutes } from './routes';
 import Loading from './Components/Common/Loading';
 const NotFound = lazy(() => import('./Pages/notFound'));
-const Home = lazy(() => import('./Pages/teacher/Home'));
+const Home = lazy(() => import('./Pages/Home'));
 
 const TeacherLayout = lazy(() => import('./Components/Teacher/Layout'));
 const StudentLayout = lazy(() => import('./Components/Student/Layout'));

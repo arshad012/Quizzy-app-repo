@@ -4,6 +4,8 @@ import TeacherSidebar from '../Sidebar';
 import { commonSelector } from '../../../Store/feature/common/selectors';
 import Header from '../Header';
 
+import '../../../App.css';
+
 function TeacherLayout() {
     const { isSidebarOpen } = useSelector(commonSelector);
 
@@ -15,7 +17,7 @@ function TeacherLayout() {
 
             <main className='flex-1 overflow-auto'>
                 <Header />
-                <div className='p-2'>
+                <div className='teacher-layout p-2'>
                     <Outlet />
                 </div>
             </main>

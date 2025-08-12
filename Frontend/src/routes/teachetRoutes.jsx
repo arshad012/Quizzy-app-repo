@@ -32,5 +32,9 @@ export const teacherRoutes = [
     {
         path: '/teacher/submissions',
         element: () => import('../Pages/teacher/submissions')
+    },
+    {
+        path: '/teacher/*',
+        element: () => import('../Pages/notFound')
     }
 ]

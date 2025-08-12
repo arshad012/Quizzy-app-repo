@@ -40,7 +40,7 @@ function CreateTemplatePage() {
     }
 
     return (
-        <div>
+        <div className="pb-2">
             <TemplatesBasicDetailsForm />
 
             <hr className="my-5" />

@@ -19,7 +19,7 @@ function TakeAssesmentPage() {
 
     useEffect(() => {
         setHeading(title || "Take Assesments");
-        setSubHeading(description || "You can attemp you assesments here");
+        setSubHeading(description || "You can attempt your assesment here");
     }, [])
 
     if (isLoading) {
@@ -27,7 +27,7 @@ function TakeAssesmentPage() {
     }
 
     return (
-        <div className='flex h-full'>
+        <div className='flex h-full bg-white'>
             <AssesmentQuestion />
             <Progress />
         </div>

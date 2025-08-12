@@ -9,7 +9,9 @@ export const assesmentInitailState = {
         /*
         
         question._id : {
-            response: ""
+            response: {
+                response: ""
+            }
         }
 
          */
