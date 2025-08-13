@@ -13,7 +13,7 @@ function StudentDashboard() {
     }, [])
 
     return (
-        <div>
+        <div className="h-full overflow-auto">
             <div>Student dashboard</div>
         </div>
     )

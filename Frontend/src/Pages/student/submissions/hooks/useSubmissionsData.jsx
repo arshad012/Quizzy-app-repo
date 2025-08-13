@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useGetAllSubmissionsQuery } from "../../../../Store/feature/submissions/api";
+import { useDeleteSubmissionMutation, useGetAllSubmissionsQuery } from "../../../../Store/feature/submissions/api";
 import { AssesmentStatusEnum, SubmissionStatusEnum } from "../../../../../../Backend/types/index";
 import { getRowIcon } from "../utils/index";
+import { Trash2 } from "lucide-react";
 
 export function useSubmissionsData() {
     const navigate = useNavigate();
@@ -9,6 +10,7 @@ export function useSubmissionsData() {
         pollingInterval: 1000 * 60,
         refetchOnFocus: true
     });
+    const [triggerDelete, { isLoading }] = useDeleteSubmissionMutation();
 
     const rows = data.map((submission) => ({
         ...submission,
@@ -33,7 +35,14 @@ export function useSubmissionsData() {
                 }
             }
         },
+        {
+            icon: <Trash2 size={20} className="text-red-500" />,
+            onClick: async (row) => {
+                if(isLoading) return;
+                triggerDelete(row._id);
+            }
+        }
     ]
 
-    return { rows, actions }
+    return { rows, actions, isLoading }
 }

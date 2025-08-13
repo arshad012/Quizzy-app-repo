@@ -48,7 +48,7 @@ function CreateAssesmentPage() {
 
 
     return (
-        <div>
+        <div className="max-h-full overflow-auto bg-white">
             <form className="flex flex-col gap-4">
                 <CustomInputs
                     inputType={InputTypes.DROP_DOWN}

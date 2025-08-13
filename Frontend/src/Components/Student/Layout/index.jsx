@@ -4,7 +4,6 @@ import StudentSidebar from '../Sidebar';
 import { commonSelector } from '../../../Store/feature/common/selectors';
 import Header from '../Header';
 
-import '../../../App.css';
 
 function StudentLayout() {
     const { isSidebarOpen } = useSelector(commonSelector);
@@ -15,9 +14,11 @@ function StudentLayout() {
                 <StudentSidebar />
             </aside>
 
-            <main className='flex-1 flex flex-col h-full overflow-auto bg-white'>
-                <Header />
-                <div className='student-layout p-2 bg-white overflow-auto'>
+            <main className='flex-1 flex flex-col h-full bg-white'>
+                <div className='h-1/10'>
+                    <Header />
+                </div>
+                <div className='max-h-[calc(100vh_-_10vh)] min-h-auto flex-1 p-2 bg-white overflow-auto'>
                     <Outlet />
                 </div>
             </main>

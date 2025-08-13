@@ -18,7 +18,7 @@ function TeacherDashboard() {
     }
 
     return (
-        <div>
+        <div className="h-full overflow-auto bg-white">
             <div className="mb-2">
                 <CustomButton onClick={handleClick}>Home</CustomButton>
             </div>

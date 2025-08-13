@@ -117,3 +117,32 @@ export const getSubmissionById = async (req, res, next) => {
     }
 };
 
+
+export const deleteSubmission = async (req, res, next) => {
+
+    const { id } = req.params;
+
+    if(!id) {
+        const error = new Error('Submission ID required to delete submission', {
+            cause: new Error('Submission ID required to delete submission')
+        })
+
+        return next(error);
+    }
+    
+
+    try {
+        const submission = await Submission.findByIdAndDelete(id);
+        
+        return res.status(200).json({
+            success: true,
+            data: submission
+        })
+    } catch (e) {
+        const error = new Error('Failed to delete Submission, Try again later', {
+            cause: e
+        })
+
+        return next(error);
+    }
+}

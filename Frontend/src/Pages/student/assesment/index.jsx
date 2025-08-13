@@ -15,18 +15,15 @@ function StudentAssesmentsPage() {
     }, [])
 
     const { rows, actions } = useAssesmentsData();
-    
 
     return (
-        <div>
-            <div>
-                <CustomTable
-                    columns={assesmentsColumns}
-                    data={rows}
-                    actions={actions}
-                    shouldShowActions={true}
-                />
-            </div>
+        <div className="max-h-full min-h-max overflow-auto">
+            <CustomTable
+                columns={assesmentsColumns}
+                data={rows}
+                actions={actions}
+                shouldShowActions={true}
+            />
         </div>
     )
 }

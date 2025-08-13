@@ -3,8 +3,8 @@ function QuestionBreakdown({ data }) {
     const questions = data?.assesmentId?.questions ?? [];
 
     return (
-        <div className="h-full">
-            <h2 className="text-lg font-semibold mb-1">QuestionBreakdown</h2>
+        <div className="h-auto">
+            <h2 className="text-lg font-semibold mt-3">QuestionBreakdown</h2>
 
             <div className="flex flex-col gap-2">
                 {

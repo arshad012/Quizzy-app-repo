@@ -25,7 +25,7 @@ function TeacherAssesmentsPage() {
     }
 
     return (
-        <div>
+        <div className="max-h-full min-h-max overflow-auto bg-white">
             <div>
                 <div className="mb-2">
                     <CustomButton onClick={handleClick}> <PlusIcon size={20} />  Create Assesment</CustomButton>

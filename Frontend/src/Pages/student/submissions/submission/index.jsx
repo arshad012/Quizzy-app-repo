@@ -27,7 +27,7 @@ function SubmissionPage() {
     
 
     return (
-        <div className="h-full">
+        <div className="max-h-full min-h-content bg-white overflow-auto">
             <StudentMatrics data={data} />
             <QuestionBreakdown data={data} />
         </div>
