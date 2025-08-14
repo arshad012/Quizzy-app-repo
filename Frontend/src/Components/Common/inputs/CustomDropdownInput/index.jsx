@@ -1,5 +1,5 @@
 import CustomDropDown from "../../CustomDropdown"
-import { ChevronDown, CheckIcon, PlusIcon } from 'lucide-react'
+import { ChevronDown, CheckIcon } from 'lucide-react'
 
 
 function CustomDropDownInput({ value = '', options = [], onChange }) {

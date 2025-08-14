@@ -1,17 +1,27 @@
+import QuestionAccordian from "./QuestionAccordian";
+import { SubmissionTypes } from '../../../Types'
 
 function QuestionBreakdown({ data }) {
     const questions = data?.assesmentId?.questions ?? [];
+    const answers = data?.answers ?? [];
 
     return (
-        <div className="h-auto">
-            <h2 className="text-lg font-semibold mt-3">QuestionBreakdown</h2>
+        <div className="mt-4">
+            {data.status === SubmissionTypes.COMPLETED ? (
+                <h2 className="text-lg font-semibold">QuestionBreakdown</h2>
+            ) : (
+                <h2 className="text-lg font-semibold">Your Answers</h2>
+            )}
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
                 {
-                    questions.map((que, index) => (
-                        <div key={index} className="border p-4 rounded truncate">
-                            Q{index+1}. {que.question}
-                        </div>
+                    questions.map((question, index) => (
+                        <QuestionAccordian
+                            key={question._id}
+                            question={question}
+                            answers={answers}
+                            index={index}
+                        />
                     ))
                 }
             </div>

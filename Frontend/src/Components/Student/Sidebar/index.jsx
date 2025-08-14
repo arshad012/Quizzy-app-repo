@@ -24,7 +24,7 @@ function StudentSidebar() {
     return (
         <div className='h-full w-full border-r flex flex-col'>
             
-            <div className={`custom-header ${isSidebarOpen ? "pl-4" : "p-0 justify-center"} w-full border-b flex items-center`}>
+            <div className={`h-16 ${isSidebarOpen ? "px-4" : "p-0 justify-center"} w-full border-b flex items-center`}>
                 <Link to={'/'}>
                     <img
                         src='../../../quizzy_logo/quizzy_logo.png'

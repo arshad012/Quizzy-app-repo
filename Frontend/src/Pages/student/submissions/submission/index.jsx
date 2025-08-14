@@ -6,8 +6,7 @@ import Loading from '../../../../Components/Common/Loading'
 
 import StudentMatrics from "../../../../Components/Common/StudentMatrics"
 import QuestionBreakdown from "../../../../Components/Common/QuestionBreakdown"
-
-import '../../../../App.css'
+import { SubmissionTypes } from '../../../../Types'
 
 function SubmissionPage() {
     const { setHeading, setSubHeading } = useHeading();
@@ -15,20 +14,20 @@ function SubmissionPage() {
     const { data = [], isLoading } = useGetSubmissionQuery(id, {
         skip: !id
     });
-    
+
     useEffect(() => {
         setHeading('Submission');
         setSubHeading('You can view your score here');
     }, [])
 
-    if(isLoading) {
+    if (isLoading) {
         return <Loading />
     }
-    
+
 
     return (
-        <div className="max-h-full min-h-content bg-white overflow-auto">
-            <StudentMatrics data={data} />
+        <div>
+            {data.status === SubmissionTypes.COMPLETED && <StudentMatrics data={data} />}
             <QuestionBreakdown data={data} />
         </div>
     )

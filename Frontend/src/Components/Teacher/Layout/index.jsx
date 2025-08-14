@@ -10,15 +10,15 @@ function TeacherLayout() {
 
     return (
         <div className='h-screen w-screen flex'>
-            <aside className={`${isSidebarOpen ? 'w-52' : 'w-15'} h-full`}>
+            <aside className={`${isSidebarOpen ? 'min-w-52 w-52' : 'w-15'} h-full`}>
                 <TeacherSidebar />
             </aside>
 
             <main className='flex-1 flex flex-col h-full bg-white overflow-auto'>
-                <div className='h-1/10'>
+                <div className='h-16'>
                     <Header />
                 </div>
-                <div className='max-h-[calc(100vh_-_10vh)] flex-1 p-2 bg-white overflow-auto'>
+                <div className='max-h-[calc(100vh_-_16)] flex-1 p-2 bg-white overflow-x-auto'> {/*  */}
                     <Outlet />
                 </div>
             </main>

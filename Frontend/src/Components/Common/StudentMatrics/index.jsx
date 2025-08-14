@@ -4,7 +4,7 @@ import { getSubmissionMatrics } from "./utils"
 function StudentMatrics({data}) {
     return (
         <div>
-            <div className="border p-2 rounded grid grid-cols-2 lg:grid-cols-4 sm:gap-10 md:gap-10">
+            <div className="border p-2 rounded grid grid-cols-2 lg:grid-cols-4"> {/* lg:gap-0 sm:gap-5 md:gap-5 */}
                 {
                     getSubmissionMatrics(data).map(({ label, value, valueClassName }) => (
                         <div key={value} className="flex flex-col justify-between items-center">

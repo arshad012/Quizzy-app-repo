@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -22,7 +22,6 @@ function CreateAssesmentPage() {
         skip: !id
     });
     const { data: templates = [] } = useGetAllTemplatesQuery();
-
     const { template, title, description, questions = [] } = useSelector(assesmentsSelector);
 
     const { setHeading, setSubHeading } = useHeading();

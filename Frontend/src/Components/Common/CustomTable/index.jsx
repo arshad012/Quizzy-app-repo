@@ -2,8 +2,8 @@
 function CustomTable({ columns = [], data = [], actions = [], shouldShowActions = true }) {
 
     return (
-        <div>
-            <table className="border border-collapse w-full">
+        <div className="overflow-x-auto">
+            <table className="border border-collapse w-full whitespace-nowrap min-w-[900px]">
                 <thead>
                     <tr className="border bg-gray-100">
                         {
@@ -47,10 +47,10 @@ function CustomTable({ columns = [], data = [], actions = [], shouldShowActions 
                                             key={i}
                                             className="cursor-pointer"
                                             onClick={() => action.onClick(row)}
-                                            >
+                                        >
                                             {typeof action.icon === 'function'
-                                            ? action.icon(row) 
-                                            : action.icon}
+                                                ? action.icon(row)
+                                                : action.icon}
                                         </div>
                                     ))}
                                 </td>

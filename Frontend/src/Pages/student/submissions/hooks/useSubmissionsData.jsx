@@ -10,6 +10,7 @@ export function useSubmissionsData() {
         pollingInterval: 1000 * 60,
         refetchOnFocus: true
     });
+
     const [triggerDelete, { isLoading }] = useDeleteSubmissionMutation();
 
     const rows = data.map((submission) => ({
@@ -28,10 +29,10 @@ export function useSubmissionsData() {
         {
             icon: (row) => getRowIcon(row.status),
             onClick: async (row) => {
-                if (row.status === SubmissionStatusEnum.COMPLETED) {
-                    navigate(`/student/submissions/${row._id}`);
-                } else {
+                if (row.status === SubmissionStatusEnum.IN_PROGRESS) {
                     navigate(`/student/assesments/${row.assesmentId._id}?submissionId=${row._id}`);
+                } else {
+                    navigate(`/student/submissions/${row._id}`);
                 }
             }
         },
@@ -44,5 +45,5 @@ export function useSubmissionsData() {
         }
     ]
 
-    return { rows, actions, isLoading }
+    return { rows, actions }
 }

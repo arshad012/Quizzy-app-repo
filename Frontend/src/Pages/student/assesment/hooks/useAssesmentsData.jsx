@@ -18,7 +18,6 @@ export function useAssesmentsData() {
         {
             icon: isLoading ? (<Loader size={20} className="animate-spin" />) : (<Play size={20} className="text-blue-500" />),
             onClick: async (row) => {
-
                 if (isLoading) return;
 
                 const data = await triggerStartAssesment({
