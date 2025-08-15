@@ -20,7 +20,8 @@ function StudentSubmissionsPage() {
     const { rows = [], actions = [] } = useSubmissionsData();
 
     return (
-        <div>
+        <div className="h-full bg-white overflow-auto">
+            <h1 className="text-center font-bold text-2xl text-gray-500 py-4">All Submissions</h1>
             <CustomTable
                 columns={submissionsColumns}
                 data={rows}

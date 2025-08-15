@@ -10,7 +10,7 @@ import { assesmentsSelector } from '../../../../Store/feature/assesments/selecto
 
 function TakeAssesmentPage() {
     const { id } = useParams();
-    const { title, description } = useSelector(assesmentsSelector);
+    const { title = '', description = '' } = useSelector(assesmentsSelector);
     const { data, isLoading } = useGetAssesmentQuery(id, {
         skip: !id
     })
@@ -18,16 +18,16 @@ function TakeAssesmentPage() {
     const { setHeading, setSubHeading } = useHeading();
 
     useEffect(() => {
-        setHeading(title || "Take Assesments");
-        setSubHeading(description || "You can attempt your assesment here");
-    }, [])
+        setHeading(title ?? "Take Assesments");
+        setSubHeading(description ?? "You can attempt your assesment here");
+    }, [title, description])
 
     if (isLoading) {
         return <Loading />
     }
 
     return (
-        <div className='flex h-full bg-white'>
+        <div className='flex h-full bg-white overflow-auto'>
             <AssesmentQuestion />
             <Progress />
         </div>

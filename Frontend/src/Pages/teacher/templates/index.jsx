@@ -27,7 +27,7 @@ function TeacherTemplatesPage() {
 
 
     return (
-        <div className="max-h-full min-h-max overflow-auto bg-white">
+        <div className="h-full overflow-auto bg-white">
             <div className="mb-2">
                 <CustomButton onClick={handleClick}>Create Template</CustomButton>
             </div>

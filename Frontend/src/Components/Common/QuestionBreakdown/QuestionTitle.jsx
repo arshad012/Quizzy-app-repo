@@ -13,7 +13,7 @@ function QuestionTitle({ question, answers, index, onClick }) {
 
     return (
         <div onClick={onClick} className="border p-4 rounded flex justify-between items-center gap-2 cursor-pointer hover:bg-gray-50 transition-all">
-            <p className="flex-1 truncate">
+            <p title={question.question} className="flex-1 truncate">
                 Q{index + 1}. {question.question}
             </p>
 

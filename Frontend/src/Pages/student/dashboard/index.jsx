@@ -1,7 +1,8 @@
 import { useEffect } from "react"
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 import { useHeading } from "../../../Hooks"
+import CustomButton from '../../../Components/Common/CustomButton'
 
 function StudentDashboard() {
     const { setHeading, setSubHeading } = useHeading();
@@ -13,8 +14,11 @@ function StudentDashboard() {
     }, [])
 
     return (
-        <div className="h-full overflow-auto">
+        <div className="h-full bg-white overflow-auto">
             <div>Student dashboard</div>
+            <Link to={"/"}>
+                <CustomButton>Home</CustomButton>
+            </Link>
         </div>
     )
 }

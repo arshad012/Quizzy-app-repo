@@ -17,7 +17,7 @@ function TeacherSubmissionsPage() {
     const { rows, actions } = useSubmissionsData();
 
     return (
-        <div className="max-h-full bg-white overflow-auto">
+        <div className="h-full overflow-auto bg-white">
             <div>
                 <CustomTable
                     columns={submissionsColumns}

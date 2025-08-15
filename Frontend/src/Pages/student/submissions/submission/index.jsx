@@ -26,7 +26,7 @@ function SubmissionPage() {
 
 
     return (
-        <div>
+        <div className="h-full bg-white overflow-auto">
             {data.status === SubmissionTypes.COMPLETED && <StudentMatrics data={data} />}
             <QuestionBreakdown data={data} />
         </div>

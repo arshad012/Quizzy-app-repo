@@ -17,7 +17,7 @@ function StudentAssesmentsPage() {
     const { rows, actions } = useAssesmentsData();
 
     return (
-        <div className="max-h-full min-h-max overflow-auto">
+        <div className="h-full bg-white overflow-auto">
             <CustomTable
                 columns={assesmentsColumns}
                 data={rows}
