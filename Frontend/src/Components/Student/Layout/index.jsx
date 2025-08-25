@@ -18,7 +18,7 @@ function StudentLayout() {
                 <div className='h-16'>
                     <Header />
                 </div>
-                <div className='flex-1 p-2 bg-blue-200 overflow-auto'>
+                <div className='flex-1 p-2 bg-white overflow-auto'>
                     <Outlet />
                 </div>
             </main>

@@ -5,4 +5,7 @@ export * from "./Template.js";
 
 // Assesments
 export * from "./Assesment/index.js";
-export * from './Submission/index.js'
+export * from './Submission/index.js';
+
+// Auth
+export * from './SignupSchema.js';

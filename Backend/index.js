@@ -5,7 +5,7 @@ import cors from "cors";
 import cron from 'node-cron';
 
 import { errorHandler } from "./utils/errorHandler.js";
-import { assessmentsRouter, submissionsRouter, templateRouter } from "./routes/index.js";
+import { assessmentsRouter, submissionsRouter, templateRouter, signupRouter, loginRouter } from "./routes/index.js";
 import { checkSubmissions } from "./cron/index.js";
 
 config();
@@ -27,6 +27,8 @@ connect(mongodb_url)
 app.use("/api/templates", templateRouter);
 app.use("/api/assesments", assessmentsRouter)
 app.use("/api/submissions", submissionsRouter)
+app.use("/api/signup", signupRouter);
+app.use("/api/login", loginRouter);
 
 app.use(errorHandler)
 
@@ -36,7 +38,7 @@ app.get('/', (req, res) => {
 })
 
 
-cron.schedule('* * * * *', checkSubmissions);
+// cron.schedule('* * * * *', checkSubmissions);
 
 
 const PORT = process.env.PORT || 5000;

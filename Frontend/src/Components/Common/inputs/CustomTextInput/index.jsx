@@ -1,5 +1,5 @@
 
-function CustomTextInput({ id, value, onChange, className = '', placeholder, ...props }) {
+function CustomTextInput({ id = '', value = '', onChange, className = '', placeholder = '', ...props }) {
     return (
         <input
             id={id}

@@ -2,7 +2,9 @@ import CustomCheckbox from "../CustomCheckbox"
 import CustomDropDownInput from "../CustomDropdownInput"
 import CustomTextArea from "../CustomTextArea"
 import CustomTextInput from "../CustomTextInput"
+import CustomNumberInput from '../CustomNumberInput'
 import { InputTypes } from "./types"
+import CustomRadioInputs from "../CustomRadioInputs"
 
 
 function HandleInputRender({inputType, ...props}) {
@@ -15,6 +17,10 @@ function HandleInputRender({inputType, ...props}) {
             return <CustomDropDownInput {...props} />
         case InputTypes.CHECKBOX : 
             return <CustomCheckbox {...props} />
+        case InputTypes.NUMBER :
+            return <CustomNumberInput {...props} />
+        case InputTypes.RADIO :
+            return <CustomRadioInputs {...props} />
     }
 }
 
