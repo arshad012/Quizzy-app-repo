@@ -1,10 +1,7 @@
 
-export const getUserLogoutAction = (state, { payload }) => {
+export const getUserLogoutAction = (state) => {
 
-    payload.forEach((el) => {
-        const { key, value } = el;
-        state[key] = value;
-    })
+    state['userLoginInfo'] = null;
 
     localStorage.removeItem("userLoginInfo");
 }

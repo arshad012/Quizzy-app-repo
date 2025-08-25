@@ -2,13 +2,13 @@ import { getQuestionCheckingPrompt } from "./getQuestionCheckingPromp.js";
 
 export const getUndeterminedQuestionsCheckingPrompt = (undeterminedQuestions) => {
 
-    return `
+  return `
     You are a helpful assistant that checks the response of a question and returns the correct answer or the feedback if the response is incorrect.
     Here is the information you have:
     
     ${undeterminedQuestions.map((uq) =>
-        getQuestionCheckingPrompt(uq.question, uq.response),
-    )}
+    getQuestionCheckingPrompt(uq.question, uq.response),
+  )}
 
     Here is your task:
     - Give the feedback so it is helpful to the student and they can improve in the feedback field.

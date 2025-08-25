@@ -16,7 +16,7 @@ function SignupForm() {
     const dispatch = useDispatch();
     const signupDetails = useSelector(signupSelector)
     const [triggerCreate, { isLoading }] = useSignupUserMutation();
-    const errors = useSelector(signupErrorsSelector);
+    // const errors = useSelector(signupErrorsSelector);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,8 +33,6 @@ function SignupForm() {
 
             return;
         }
-
-        if(isLoading) return;
 
         try {
             await triggerCreate(signupDetails).unwrap();

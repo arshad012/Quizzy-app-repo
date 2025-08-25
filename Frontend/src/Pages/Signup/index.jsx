@@ -13,12 +13,12 @@ function Signup() {
     const { setHeading, setSubHeading } = useHeading();
     const { userLoginInfo } = useSelector(loginSelector)
 
+    
     useEffect(() => {
         setHeading('SignUp');
         setSubHeading('');
-        
         if(userLoginInfo) {
-            return navigate('/login');
+            return navigate(`/${((userLoginInfo.userType).toLowerCase())}/dashboard`);
         }
     
         return () => dispatch(resetSignupKey());

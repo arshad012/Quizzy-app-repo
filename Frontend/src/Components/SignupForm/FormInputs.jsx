@@ -10,6 +10,8 @@ import { radioInputs } from './utils/index';
 import { signupErrorsSelector } from "../../Store/feature/SignupErrors/selector";
 import { resetErrorState } from "../../Store/feature/SignupErrors/signupErrorSlice";
 
+import { validateName, validatePhone, validatePassword } from "./utils/validation";
+
 function FormInputs() {
     const dispatch = useDispatch();
     const { userType, name, phone, gender, password, confirmPassword } = useSelector(signupSelector)
@@ -17,7 +19,7 @@ function FormInputs() {
     const [user, setUser] = useState(userType);
     const errors = useSelector(signupErrorsSelector);
     const [showError, setShowError] = useState({...errors});
-        
+    
     useEffect(() => {
         setShowError({...errors});
     }, [errors])
@@ -51,7 +53,7 @@ function FormInputs() {
                     placeholder='Enter name'
                     id='userName'
                 />
-                <p className={`text-red-500 ${showError.name ? '' : 'hidden'}`}>{name.length == 0 ? 'Please enter your name' : name.length <= 3 ? 'Name seems not correct, please enter correct name' : ''}</p>
+                <p className={`text-red-500 ${showError.name ? '' : 'hidden'}`}>{name.length == 0 ? 'Please enter your name' : name.length < 3 ? 'Name seems not correct, please enter correct name' : validateName(name) ? '' : 'Invalid name'}</p>
             </div>
 
             <div>
@@ -63,8 +65,7 @@ function FormInputs() {
                     placeholder='Enter phone number'
                     id='userPhone'
                 />
-                <p className={`text-red-500 ${showError.phone ? '' : 'hidden'}`}>{phone.length == 0 ? 'Please enter your phone number' : phone.length < 10 ? 'Phone number must be 10 digits' : ''}</p>
-            </div>
+                <p className={`text-red-500 ${showError.phone ? '' : 'hidden'}`}>{phone.length == 0 ? 'Please enter your phone number' : phone.length < 10 ? 'Phone number must be 10 digits' : validatePhone(phone) ? '' : 'Digits can not more then 10'}</p></div>
 
             <div>
                 <div className="flex gap-3 mt-2">
@@ -126,8 +127,9 @@ function FormInputs() {
                     label='Create password'
                     placeholder='Password...'
                     id='userPassword'
+                    maxLength='15'
                 />
-                <p className={`text-red-500 ${showError.password ? '' : 'hidden'}`}>{password.length == 0 ? 'Please create password' : password.length < 8 ? 'Password should be minumum 8 digits' : ''}</p>
+                <p className={`text-red-500 ${showError.password ? '' : 'hidden'}`}>{password.length == 0 ? 'Please create password' : password.length < 8 ? 'Password should be minumum 8 digits' : validatePassword(password) ? '' : 'Invalid password, Password must have one special character, one small and one capital letter'}</p>
             </div>
 
             <div>

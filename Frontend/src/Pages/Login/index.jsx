@@ -14,21 +14,16 @@ function Login() {
     const { setHeading, setSubHeading } = useHeading();
     const { userLoginInfo } = useSelector(loginSelector);
 
+    
     useEffect(() => {
         setHeading('Login');
         setSubHeading('');
-
-        return () => dispatch(
-            resetLoginKey([
-                { key: 'phone', value: '' },
-                { key: 'password', value: '' },
-            ]));
-    }, [])
-
-    useEffect(() => {
+        
         if (userLoginInfo) { // After login this state will be updated "userLoginInfo" and acoording to updated state it will redirect user to dashboard page
             return navigate(`/${(((userLoginInfo.userType).toLowerCase()))}/dashboard`);
         }
+
+        return () => dispatch(resetLoginKey());
     }, [userLoginInfo])
 
     return (

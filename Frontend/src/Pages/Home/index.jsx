@@ -7,7 +7,6 @@ import Header from "../../Components/Teacher/Header";
 import { useHeading } from "../../Hooks";
 import { loginSelector } from "../../Store/feature/Login/selector";
 import { logoutUser } from "../../Store/feature/Login/loginSlice";
-import { logoutKeyUpdate } from "../../Components/Common/LogoutKeyUpdate";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,9 +24,7 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    dispatch(logoutUser(
-      logoutKeyUpdate()
-    ));
+    dispatch(logoutUser());
   };
 
   return (

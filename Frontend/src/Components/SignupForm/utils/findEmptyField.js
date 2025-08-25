@@ -1,3 +1,4 @@
+import { validateName, validatePhone, validatePassword } from "./validation";
 
 export const findEmptyField = (signupDetails) => {
     let emptyField = null;
@@ -10,17 +11,17 @@ export const findEmptyField = (signupDetails) => {
         else {
             switch (key) {
                 case "name":
-                    if (signupDetails[key].length <= 3) {
+                    if (!validateName(signupDetails[key])) {
                         emptyField = key;
                     }
                     break;
                 case "phone":
-                    if (signupDetails[key].length < 10) {
+                    if (!validatePhone(signupDetails[key])) {
                         emptyField = key;
                     }
                     break;
                 case "password":
-                    if (signupDetails[key].length < 8) {
+                    if (!validatePassword(signupDetails[key])) {
                         emptyField = key;
                     }
                     break;

@@ -1,8 +1,7 @@
+import { loginInitialState } from "../initialState";
 
-export const resetLoginKeyAction = (state, { payload }) => {
+export const resetLoginKeyAction = (state) => {
 
-    payload.forEach((el) => {
-        const { key, value } = el;
-        state[key] = value;
-    })
+    Object.assign(state, loginInitialState);
+    state.userLoginInfo = localStorage.getItem("userLoginInfo") ? JSON.parse(localStorage.getItem("userLoginInfo")) : null
 }
